@@ -1,0 +1,18 @@
+version: "3"
+services: 
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: 123
+      POSTGRES_USER: user
+      POSTGRES_DB: meter_reading
+  app:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - 80:80
+    volumes:
+      - ./src:/app/src
+      - /app/node_modules
+    command: npm run start:dev
