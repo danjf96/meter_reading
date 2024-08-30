@@ -1,18 +1,32 @@
 version: "3"
 services: 
-  db:
-    image: postgres
-    environment:
-      POSTGRES_PASSWORD: 123
-      POSTGRES_USER: user
-      POSTGRES_DB: meter_reading
   app:
     build: .
     env_file:
       - .env
     ports:
       - 80:80
+    depends_on:
+      - db
     volumes:
-      - ./src:/app/src
+      - .:/app
       - /app/node_modules
     command: npm run start:dev
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: 123
+      POSTGRES_USER: user
+      POSTGRES_DB: meter_reading
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "pgadmin@pgadmin.com"
+      PGADMIN_DEFAULT_PASSWORD: "123"
+    ports:
+      - "16543:80"
+    depends_on:
+      - db
+  
