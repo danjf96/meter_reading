@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "target": "es2020" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
     "module": "commonjs" /* Specify what module code is generated. */,
     "rootDir": "src",
     "outDir": "./dist" /* Specify the root folder within your source files. */,
@@ -11,8 +11,9 @@
     "paths": {
       "@/*": ["*"]
     },
-    "baseUrl": "src"
-  },
-  "emitDecoratorMetadata": true,
-  "experimentalDecorators": true,
+    "baseUrl": "src",
+    "strictPropertyInitialization": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+  }
 }

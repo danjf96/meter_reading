@@ -1,7 +1,7 @@
 
-import { DB_CONFIG } from "@/core/config/db";
+import { DB_CONFIG } from "@/infra/config/db";
 import { DataSource } from "typeorm";
-import "reflect-metadata"
+import { Measure } from "./entity/measure.entity";
 
 export const AppDataSource = new DataSource({
   type: DB_CONFIG.type,
@@ -12,7 +12,7 @@ export const AppDataSource = new DataSource({
   database: DB_CONFIG.database,
   synchronize: true,
   logging: false,
-  entities: [],
+  entities: [Measure],
   migrations: [],
   subscribers: [],
 });

@@ -1,5 +1,7 @@
 import { Express } from "express";
 import * as cors from "cors";
+import { MeasureController } from "@/application/controllers/measure.controller";
+import { container } from "tsyringe";
 
 export class FrameworkConfig {
   private app: Express;
@@ -11,8 +13,11 @@ export class FrameworkConfig {
     }
 
     public async init(): Promise<void> {
+        const measureController = container.resolve(MeasureController);
+
         try {
             this.app.use(cors());
+            this.app.get('/test',  measureController.create.bind(measureController));
             this.serverListener = this.app.listen(this.port, () => {
                 console.log(`Server running on port ${this.port}...`)      
             });

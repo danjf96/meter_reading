@@ -1,4 +1,6 @@
-import { FrameworkConfig } from "./core/config/framework";
+import "reflect-metadata"; 
+import "@/infra/config/dependency-injection";
+import { FrameworkConfig } from "./infra/config/framework";
 import { AppDataSource } from "./infra/orm.config";
 
 const express = require('express');
